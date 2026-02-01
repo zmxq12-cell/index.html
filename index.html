@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine</title>
+
+<style>
+body {
+background:#ffe6f2;
+margin:0;
+height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+font-family:Arial,sans-serif;
+overflow:hidden;
+text-align:center;
+user-select:none;
+}
+
+h1 {
+color:#ff4d94;
+font-size:3rem;
+}
+
+.container {
+position:relative;
+width:320px;
+height:220px;
+}
+
+button {
+position:absolute;
+padding:14px 30px;
+font-size:1.2rem;
+border:none;
+border-radius:40px;
+cursor:pointer;
+transition:transform 0.2s;
+}
+
+#yesBtn {
+background:#ff4d94;
+color:white;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%) scale(1);
+z-index:2;
+}
+
+#noBtn {
+background:white;
+color:#ff4d94;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Will you be my Valentine</h1>
+
+<div class="container" id="box">
+<button id="yesBtn">Yes</button>
+<button id="noBtn">No</button>
+</div>
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const box = document.getElementById("box");
+
+let yesScale = 1;
+
+function moveNo() {
+yesScale += 0.3;
+yesBtn.style.transform =
+"translate(-50%,-50%) scale(" + yesScale + ")";
+
+const maxX = box.clientWidth - noBtn.offsetWidth;
+const maxY = box.clientHeight - noBtn.offsetHeight;
+
+const x = Math.random() * maxX;
+const y = Math.random() * maxY;
+
+noBtn.style.left = x + "px";
+noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+
+moveNo();
+
+yesBtn.onclick = function () {
+document.body.innerHTML =
+'<h1 style="color:#ff4d94;font-size:4rem;">YAY ❤️</h1>' +
+'<div style="font-size:90px;">🎉🥰🌹</div>';
+document.body.style.background = "#ffb3d9";
+};
+</script>
+
+</body>
+</html>
